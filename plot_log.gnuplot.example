@@ -2,10 +2,7 @@ set title "Training loss vs. training iterations"
 set xlabel "Training iterations" 
 set ylabel "Training loss" 
 plot "deepID_1000_train.log.train" using 1:3 with line title 'Loss-1000',\
-"deepID_1100_train.log.train" using 1:3 with line title 'Loss-1100',\
-"deepID_1300_train.log.train" using 1:3 with line title 'Loss-1300',\
 "deepID_1500_train.log.train" using 1:3 with line title 'Loss-1500',\
-"deepID_1700_train.log.train" using 1:3 with line title 'Loss-1700',\
 "deepID_1900_train.log.train" using 1:3 with line title 'Loss-1900'
 
 
@@ -15,9 +12,13 @@ set title "Testing loss vs. testing iterations"
 set xlabel "Testing iterations"
 set ylabel "Testing loss"
 plot "deepID_1000_train.log.test" using 1:4 with line title 'Loss-1000',\
-"deepID_1100_train.log.test" using 1:4 with line title 'Loss-1100',\
-"deepID_1300_train.log.test" using 1:4 with line title 'Loss-1300',\
 "deepID_1500_train.log.test" using 1:4 with line title 'Loss-1500',\
-"deepID_1700_train.log.test" using 1:4 with line title 'Loss-1700',\
 "deepID_1900_train.log.test" using 1:4 with line title 'Loss-1900'
-~
+
+
+set title "Testing accuracy vs. testing iterations"
+set xlabel "Testing iterations"
+set ylabel "Testing accuracy"
+plot "deepID_1000_train.log.test" using 1:3 with line title 'accuracy-1000',\
+"deepID_1500_train.log.test" using 1:3 with line title 'accuracy-1500',\
+"deepID_1900_train.log.test" using 1:3 with line title 'accuracy-1900'
