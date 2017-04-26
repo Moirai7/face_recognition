@@ -63,8 +63,8 @@ class DeepID():
        
         #在prjpath下新建名为num的文件夹,将配置以及生成的文件放在该文件夹下
         #在prjpath下新建num文件夹
-        if not os.path.exists(prjpath+str(num)):    
-            os.makedirs(prjpath+str(num))
+        if not os.path.exists(prjpath+'result/'+str(num)):    
+            os.makedirs(prjpath+'result/'+str(num))
         
         self.net_proto_model=prjpath+prj+'_train_test.prototxt'
         self.solver_proto_model=prjpath+prj+'_solver.prototxt'
@@ -72,7 +72,7 @@ class DeepID():
         self.netimg=prjpath+prj+'_net.png'
         self.shdrawnet=prjpath+prj+'_drawnet.sh'#画Net结构图
         
-        rspath=prjpath+str(num)+'/'
+        rspath=prjpath+'result/'+str(num)+'/'
         strnum='_'+str(num)+'_'
   
         self.data_train=rspath+prj+'_train_'+str(num)+'.txt'
@@ -305,5 +305,5 @@ def demo(num):
 
 if __name__=='__main__':
 
-    demo(2000)
+    demo(1900)
     #demo后面的数字是训练的人数（1-10575）

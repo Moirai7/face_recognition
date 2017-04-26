@@ -60,7 +60,7 @@ class DeepIDTest(DeepID):
         self.model=self.snapshot_pre+'_iter_'+str(itera)+'.caffemodel'
         self.deploy=prjpath+prj+'_deploy.prototxt'
 
-        self.imgmean_npy=prjpath+str(num)+'/'+prj+'_'+str(num)+'_mean.npy'
+        self.imgmean_npy=prjpath+'result/'+str(num)+'/'+prj+'_'+str(num)+'_mean.npy'
 
         if types==1:
             self.left=prjpath+'lfw_left.txt'
@@ -73,7 +73,7 @@ class DeepIDTest(DeepID):
         else:
             print 'types input ERROR'
             exit()
-        self.savepath=prjpath+str(num)+'/test/'
+        self.savepath=prjpath+'result/'+str(num)+'/test/'
         if not os.path.exists(self.savepath):
             os.makedirs(self.savepath)
         self.accuracy=self.savepath+prj+'_'+str(num)+'_'+str(itera)+'_accuracy.txt'
@@ -279,6 +279,6 @@ def demo_test(num,itera):
     test.evaluate(metric='cosine')
         
 if __name__=='__main__':
-    num=1000#人数
-    itera=18#所选模型的迭代次数
+    num=1900#人数
+    itera=99000#所选模型的迭代次数
     demo_test(num,itera)
