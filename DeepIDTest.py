@@ -272,7 +272,7 @@ def demo_test(num,itera):
     datapath=home+'/Faces/faces100/CASIA-WebFace/' 
     types=1
     pairs=home+'lan/face_recognition/pairs.txt'
-    lfwpath=home+'Faces/LFW/'
+    lfwpath=home+'Faces/faces100/LFW/'
 
     test=DeepIDTest(prj,caffepath,prjpath,datapath,num,types,pairs,itera,lfwpath)
     
@@ -281,5 +281,5 @@ def demo_test(num,itera):
         
 if __name__=='__main__':
     num=1000#人数
-    itera=60000#所选模型的迭代次数
+    itera=300000#所选模型的迭代次数
     demo_test(num,itera)
