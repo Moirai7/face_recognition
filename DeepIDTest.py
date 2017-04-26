@@ -8,7 +8,8 @@ Create on Tues 2015-11-24
 
 #运行前,先将pycaffe安装好
 #运行时在caffe主目录（一般为～/caffe-master）下执行python DeepIDTest.py
-
+import matplotlib
+matplotlib.use('Agg')
 import os
 import sklearn
 import numpy as np
@@ -121,7 +122,6 @@ class DeepIDTest(DeepID):
         for line in lines:
             word=line.split('\n')
             filename=word[0]
-	    print filename
             im1=skimage.io.imread(filename,as_grey=False)
             image =skimage.transform.resize(im1,(64, 64))*255
             if image.ndim<3:
