@@ -76,6 +76,7 @@ class DeepIDTest(DeepID):
         self.savepath=prjpath+'result/'+str(num)+'/test/'
         if not os.path.exists(self.savepath):
             os.makedirs(self.savepath)
+	print self.savepath
         self.accuracy=self.savepath+prj+'_'+str(num)+'_'+str(itera)+'_accuracy.txt'
         self.predict=self.savepath+prj+'_'+str(num)+'_'+str(itera)+'_predict.txt'
         self.roc=self.savepath+prj+'_'+str(num)+'_'+str(itera)+'_roc'
@@ -279,6 +280,6 @@ def demo_test(num,itera):
     test.evaluate(metric='cosine')
         
 if __name__=='__main__':
-    num=1900#人数
-    itera=57000#所选模型的迭代次数
+    num=1000#人数
+    itera=60000#所选模型的迭代次数
     demo_test(num,itera)
