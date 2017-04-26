@@ -1,0 +1,5 @@
+set title "Training loss vs. training iterations" 
+set xlabel "Training iterations" 
+set ylabel "Training loss" 
+set output 'test.png'
+plot "deepID_1000_train.log.train" using 3 with line title 'Loss'
