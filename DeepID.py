@@ -139,9 +139,11 @@ class DeepID():
                 if num>select_ids[self.num-1][0]:
                     break
                 if num%ratio!=0:
-                    fid_train.write(os.path.join(subdir,filename)+'\t'+str(pid)+'\n')
+                    #fid_train.write(os.path.join(subdir,filename)+'\t'+str(pid)+'\n')
+                    fid_train.write(os.path.join(subdir,filename)+' '+str(pid)+'\n')
                 else:
-                    fid_test.write(os.path.join(subdir,filename)+'\t'+str(pid)+'\n')
+                    #fid_test.write(os.path.join(subdir,filename)+'\t'+str(pid)+'\n')
+                    fid_test.write(os.path.join(subdir,filename)+' '+str(pid)+'\n')
                 num=num+1
             pid=pid+1
         fid_train.close()
@@ -153,11 +155,11 @@ class DeepID():
         @param : 
         '''
         _command='rm -rf '+self.lmdb_train+'\n'
-        _command+='rm -rf '+self.lmdb_train+'\n'    
+        _command+='rm -rf '+self.lmdb_test+'\n'    
     
         _command+='echo "Creating train lmdb..."\n'
         
-        _command+=self.caffepath+'build/tools/convert_imageset '
+        _command+=self.caffepath+'build/tools/convert_imageset.bin '
         _command+='--resize_height='+str(height)+' '
         _command+='--resize_width='+str(width)+' '
         _command+='--shuffle '
@@ -167,10 +169,10 @@ class DeepID():
         _command+=self.lmdb_train
         out=r' 2>&1 |tee '+self.log_create
         _command+=out+'\n'
-
-        _command+='echo "Creating train lmdb..."\n'
+	
+	_command+='echo "Creating test lmdb..."\n'
         
-        _command+=self.caffepath+'build/tools/convert_imageset '
+        _command+=self.caffepath+'build/tools/convert_imageset.bin '
         _command+='--resize_height='+str(height)+' '
         _command+='--resize_width='+str(width)+' '
         _command+='--shuffle '
@@ -288,7 +290,7 @@ class DeepID():
         DeepID.fileopt(self.shtest,_command)
         os.system(_command)
 def demo(num):
-    deepID=DeepID('deepID','/home/ikode/caffe-master/','/home/ikode/caffe-master/examples/deepID/','/media/ikode/Document/big_materials/document/deep_learning/caffe/face_datasets/webface/croped/',num)
+    deepID=DeepID('deepID','/home/gpu/caffe/','/home/gpu/lan/face_recognition/','/home/gpu/Faces/faces100/CASIA-WebFace/',num)
     ratio=9
 
     deepID.div_data(ratio)
@@ -297,11 +299,11 @@ def demo(num):
 
     deepID.compute_imgmean()
 
-#    deepID.draw_net()
+    #deepID.draw_net()
 
     deepID.train()
 
 if __name__=='__main__':
 
-    demo(1000)
+    demo(2000)
     #demo后面的数字是训练的人数（1-10575）

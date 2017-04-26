@@ -16,7 +16,8 @@ import matplotlib.pyplot as plt
 import skimage
 import sys
 _command="rm -rf caffe\n"
-_command+="ln -s "+ os.path.expanduser('~/')+"/caffe-master/python/caffe ./caffe"
+#_command+="ln -s "+ os.path.expanduser('~/')+"/caffe-master/python/caffe ./caffe"
+_command+="ln -s "+ os.path.expanduser('~/')+"/caffe/python/caffe ./caffe"
 os.system(_command)
 
 import caffe
@@ -80,7 +81,8 @@ class DeepIDTest(DeepID):
 
 
     def split_pairs(self):
-        ext='ppm'
+        #ext='ppm'
+	ext='jpg'
 	print self.lfwpath
         pairs_result=testdeal(self.pairs, self.lfwpath,ext)
 
@@ -119,6 +121,7 @@ class DeepIDTest(DeepID):
         for line in lines:
             word=line.split('\n')
             filename=word[0]
+	    print filename
             im1=skimage.io.imread(filename,as_grey=False)
             image =skimage.transform.resize(im1,(64, 64))*255
             if image.ndim<3:
@@ -263,12 +266,12 @@ class DeepIDTest(DeepID):
 def demo_test(num,itera):
     prj='deepID'
     home=os.path.expanduser('~/')
-    caffepath=home+'/caffe-master/'
-    prjpath=home+'/caffe-master/examples/deepID/'
-    datapath=home+'/caffe-master/data/deepID/webface/' 
+    caffepath=home+'/caffe/'
+    prjpath=home+'lan/face_recognition/'
+    datapath=home+'/Faces/faces100/CASIA-WebFace/' 
     types=1
-    pairs=home+'/caffe-master/examples/deepID/pairs.txt'
-    lfwpath=home+'/caffe-master/data/deepID/lfwcrop_color/faces/'
+    pairs=home+'lan/face_recognition/pairs.txt'
+    lfwpath=home+'Faces/LFW/'
 
     test=DeepIDTest(prj,caffepath,prjpath,datapath,num,types,pairs,itera,lfwpath)
     
@@ -276,6 +279,6 @@ def demo_test(num,itera):
     test.evaluate(metric='cosine')
         
 if __name__=='__main__':
-    num=10000#人数
-    itera=750000#所选模型的迭代次数
+    num=1000#人数
+    itera=18#所选模型的迭代次数
     demo_test(num,itera)
