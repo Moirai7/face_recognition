@@ -280,5 +280,5 @@ def demo_test(num,itera):
         
 if __name__=='__main__':
     num=1900#人数
-    itera=99000#所选模型的迭代次数
+    itera=57000#所选模型的迭代次数
     demo_test(num,itera)
